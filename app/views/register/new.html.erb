@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Register</h1>
+<%= @message %>
+<%= form_tag({:controller=>"register", :action=>"create"}, method: :post) do %>
+  User Name:<br> <%= text_field_tag :user_name, nil, :required => true%> <br> <br>
+  Name:<br> <%= text_field_tag :name, nil, :required => true%> <br> <br>
+  Email:<br> <%= email_field_tag :email, nil, :required => true %> <br> <br>
+  Password:<br> <%= password_field_tag :password, nil, :required => true, :pattern => "[A-Za-z0-9]{8,}"%>
+  <font color = "red">Password must be alphanumeric and atleast 8 characters </font> <br> <br>
+  Confirm Password:<br> <%= password_field_tag :confirm_password, nil, :required => true, :pattern => "[A-Za-z0-9]{8,}"%> <br> <br>
+</select>
+  <%= submit_tag 'Sign Up', name: nil %>
+<% end %>
+<script language='javascript' type='text/javascript'>
+    function check() {
+        if (document.getElementById('confirm_password').value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
+</script>
+</body>
+</html>

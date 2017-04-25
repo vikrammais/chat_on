@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+<!-- 
+// function LoadOnce() 
+// { 
+// window.location.reload(); 
+// } 
+//-->
+window.scroll(0, document.body.scrollHeight);
+</script>
+<% if !@conversation.blank? %>
+  <% @conversation.each do |name, message| %>
+    <% if name == "You" %>
+      <font color="blue"> <%= "#{name} :" %></font>
+      <%= " #{message}" %></font> <br> <br>
+    <% else %>
+      <font color="red"> <%= "#{name} :" %></font>
+      <%= " #{message}" %></font> <br> <br>
+    <% end %>      
+  <% end %>
+<% else %>
+<% end %>
+<%= form_tag:controller=>"conversations", :action=>"send_message", :user_id => @user_id, method: :post do %>
+  <br> <%= text_field_tag :message, nil, :placeholder => "Type Message Here", :required => true%> <br> <br>
+  <%= submit_tag 'Send Message', name: nil %>
+<% end %>
+<br>
+</body>
+</html>

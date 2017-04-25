@@ -1,0 +1,16 @@
+<h1>Data of <%= "#{@user[:user_name]}"%></h1>
+Name : <%= @user[:name]%> <br>
+User Name : <%= @user[:user_name]%> <br> <br>
+
+<% if !@relation.blank? %>
+  <% if @status == "Accept" %>
+    <%= link_to "Accept Friend Request", :controller => :user_operations, :action => :friend_request_accept, :status => 1, :id => @user[:id]%> <br>
+  <% elsif @status == "Sent" %>
+    <p>Friend Request Sent</p>
+  <% elsif @status == "Friends" %>
+    <%= link_to "Message", class: 'btn btn-success', :controller => :conversations, :action => :show_messages, :user_id => @user[:id]%> <br>
+  <% end %>  
+<% else %>
+  <%= link_to "Send Friend Request", :controller => :user_operations, :action => :send_friend_request, 
+  :status => 1, :user_id => @user[:id]%> <br>
+<% end %>

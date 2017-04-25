@@ -1,0 +1,21 @@
+<%= @user = User.find_by_id(session[:id]) if !session[:id].blank?%>
+<h1><%= @user['name']%> Logged In</h1>
+<%= form_tag({:controller=>"user_operations", :action=>"search"}, method: :get) do %>
+  Search Users:<br> <%= text_field_tag :user_name, nil, :required => true%> &nbsp
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+<br><br>
+
+<%= link_to "Friends' List", :controller => :user, :action => :friends_list, :id => session[:user_id]%> <br> <br>
+
+<% if !@friends_pending.blank?%>
+  <font color="red">Friend Requests Pending</font> <br>
+  <% @friends_pending.each do |id, name| %>
+    <%= link_to "#{name}", :controller => :user, :action => :user_data, :user_id => id%> &nbsp
+    <%= link_to "Accept", :controller => :user_operations, :action => :friend_request_accept, :status => 1, :id => id%> <br>
+  <% end %>
+  <br><br>
+<% end %>
+<%= form_tag({:controller=>"sessions", :action=>"destroy"}, method: :get) do %>
+  <%= submit_tag 'Log Out', name: nil %>
+<% end %>

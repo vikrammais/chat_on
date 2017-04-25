@@ -1,0 +1,8 @@
+<% if !@friends_list.blank? %>
+  <h1>Friends of <%= "#{@user[:user_name]}"%></h1>
+  <% @friends_list.each do |id, user_name| %>
+    <%= link_to "#{user_name}", :controller => :user, :action => :user_data, :user_id => id%> <br> <br>
+  <% end %>
+<% else %>
+  <h1>Oops! Seems like you have no friends</h1>  
+<% end %>

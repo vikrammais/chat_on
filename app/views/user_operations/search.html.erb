@@ -1,0 +1,15 @@
+<h1>Search Results</h1>
+
+<% if !@users.blank?%>
+  <% @users.each { |user| %>
+    <%= link_to "#{user["name"]}", :controller => :user, :action => :user_data, :user_id => user[:id]%> <br>
+  <% } %>
+<% else %>
+  <p> No Such User Exists </p>
+  <button onclick="goBack()">Go Back</button>
+  <script>
+	function goBack() {
+	    window.history.back();
+	}
+  </script>
+<% end %>
