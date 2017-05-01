@@ -23,7 +23,8 @@ window.scroll(0, document.body.scrollHeight);
 <% else %>
 <% end %>
 <%= form_tag:controller=>"conversations", :action=>"send_message", :user_id => @user_id, method: :post do %>
-  <br> <%= text_field_tag :message, nil, :placeholder => "Type Message Here", :required => true%> <br> <br>
+  <!-- <br> <%= text_field_tag :message, nil, :placeholder => "Type Message Here", :required => true%> <br> <br> -->
+  <br> <%= text_area_tag :message, nil, :rows => 4, :cols => 30, :placeholder => "Type Message Here", :required => true%> <br> <br>
   <%= submit_tag 'Send Message', name: nil %>
 <% end %>
 <br>
